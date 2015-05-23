@@ -26,7 +26,7 @@ public class S3Uploader extends Uploader {
 				config.getS3SecretKey() == null || config.getS3SecretKey().equals("") ||
 				config.getS3Endpoint() == null || config.getS3Endpoint().equals("") ||
 				config.getS3BucketName() == null || config.getS3BucketName().equals("")) {
-			new UploaderException("Incomplete S3 parameteres.");
+			new UploaderException("Incomplete S3 parameters.");
 		}
 		this.maxFileSize = config.getMaxFileSizeInKB();
 		this.supportedMimes = config.getSupportedMimes();
@@ -54,6 +54,7 @@ public class S3Uploader extends Uploader {
 			while(stream.read(buffer) > 0) {
 				bufferedStream.write(buffer);
 				kilobytesRead++;
+				// Check file size
 				if(maxFileSize > -1 && kilobytesRead > maxFileSize) {
 					bufferedStream.close();
 					stream.close();

@@ -57,6 +57,7 @@ public class UploaderConfig {
 	}
 	
 	public int getMaxFileSizeInKB() {
+		// No max file size
 		if(maxFileSize == null) {
 			return -1;
 		}

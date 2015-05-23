@@ -19,6 +19,11 @@ public abstract class Uploader {
 	 */
 	public abstract void upload(InputStream stream, String... fileNameParts) throws UploaderException;
 	
+	/**
+	 * Build path from string parts. The strings are concatenated using "/" to represent a path.
+	 * @param fileNameParts Single parts of the path.
+	 * @return Full path
+	 */
 	protected String buildPathFromParts(String... fileNameParts) {
 		String filePath = "";
 		for(int i = 0; i < fileNameParts.length; i++) {
@@ -30,6 +35,12 @@ public abstract class Uploader {
 		return filePath;
 	}
 	
+	/**
+	 * Checks whether the give filename has an accepted MIME type based on the file extension.<br/><br/>
+	 * If the uploader doesn't have a list of accepted MIME types, then all extensions are considered as accepted.
+	 * @param fileName File name containing the extension
+	 * @return True if the file is of an accepted MIME type; False otherwise.
+	 */
 	protected boolean acceptedMIME(String fileName) {
 		if(supportedMimes == null) {
 			return true;
